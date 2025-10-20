@@ -3,6 +3,7 @@ from typing import List, Dict
 import threading
 import time
 
+SUPADATA_BASE_URL = "https://api.supadata.ai/v1"
 
 class Options:
    def __init__(self, options: List[Dict]):
