@@ -1,8 +1,20 @@
 from model import ChatBot
-
-bot = ChatBot()
-
+from supadata_transcript_fetcher import TranscriptFetcher
+from openrouter_model import OpenRouterChatBot
 transcript = "Good morning, John. I've been thinking alot about morality. Maybe it's yourbook, maybe it's society at large. But my understanding of this word, what it means, has been changing because likewhen I was growing up, I'll be honest,like morality, weirdly, was like a kindof a dirty word. To me, morality didn'tmean kindness or honesty or fairness. Itmeant rules about how long your haircould be. For some reason, it meant notbeing allowed to say certain words. Itmeant being judged for who you loved orwhich god you believed in or didn'tbelieve in. This idea to me was prettytightly tied with how to control peoplerather than how to like help or protectpeople or like make society stronger. Iwas and remain a fan of curse words. Butof course, there are also words that Ibelieve we should definitely not say.Not just me, but other people. Notbecause they're rude or shocking words,but because I think they make societyand people worse. But if there arepeople who feel the same way about cursewords that I feel about slurs, that likedeep gut level discomfort, like it'sworth asking what's going on here.Starting out with quick a quickrefresher on taboos. When I think ofother cultures, a taboo always feelsjust like a rule. It's something you'renot supposed to do or discuss. On theother hand, when talking about myculture, taboos seem like just kind ofthe way things are and should be. Likefor example, some public nipples arefine and some public nipples areillegal. We all know together whichpublic nipples aren't okay. No one'sconfused about it and no one questionsit. Now, you could easily imagine afunctional society where all publicnipples are fine or where all publicnipples are not fine. And that's what ataboo really is. It's so ingrained insociety, it doesn't even feel like arule. It feels like a law of nature. Andsometimes when you start asking whythese rules exist, like why are somenipples not okay? The answers youuncover aren't super pretty becauseoften they reveal an effort to controlor suppress certain groups rather thanto protect anyone. So that's one exampleof a taboo. Curse words are anotherexample. Sometimes people who are likesuper new to all this like there's nosuch thing as a dirty word. It's justsounds and order. But like no, we livein a society. In the case of lots oflike traditional curse words, the factis that there are things that we do notlike to talk about in polite company.There's body stuff and there's sexstuff. And the words for those thingsalso have a tendency to become taboojust like the things themselves. So,thus far talking about morality, we havenorms and taboos that spring from what Ithink are undesirable aspects of culturelike rules that control women's bodiesor the ability of trans or gay people tobe publicly trans or gay. And then wehave like these kind of unharmfullagging norms that reflect a previoussociety where we had more hang-upsaround poop or sex than we do now. Andso we have these powerful words that arenonetheless not really harmful or reallyhelpful. So when morality imposes a lotof controls on people that don't allowthem to live the lives that they want tolive, I can see why sometimes even oftenthe idea of morality has a negativeconnotation. But of course morality alsoserves purposes that I like. And one isto create a society that's just boundtogether by commonalities, even ifthey're arbitrary. And this is why Ilike both cursing and the taboo on cursewords. I want to be able to curse and Ican't do that if there's no taboo.Without the taboo, a curse word is justa word and that's no fun at all. So thatsecond thing where we have like normsand taboos that are just kind of silly.I actually like that. I think thatthat's good. I think that like it bindsus together. As long as it's notcontrolling people in a way that harmsthem, I'm a fan. And I see how thosethings can have a fuzzy line betweenthem and how that can create tension. Welive in a society and we're individualsand this is a hard thing. And part ofall of that work is just figuring outwhere that like line for you is going tobe and then having some fights about itin public, which is fine. Like of courseI've got my ideas of what's too muchcontrol and what's not enough. But ingeneral, I think that it's good to havesome like weird rules that make us us.But there's also a third thing. It's thegood kind. It's the good morality thatputs contro"
 
-summary = bot.summarise(transcript)
-print(summary)
+def test_bot():
+    bot = ChatBot()
+    summary = bot.summarise(transcript)
+    print(summary)
+
+def test_supadata():
+    url = "https://www.youtube.com/watch?v=2crhrbqCLzU"
+    tFetch = TranscriptFetcher()
+    res = tFetch.fetch_transcript(url)
+
+    bot = OpenRouterChatBot()
+    summary = bot.summarise(res)
+    print(summary)
+
+test_supadata()

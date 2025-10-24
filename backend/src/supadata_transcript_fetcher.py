@@ -15,16 +15,23 @@ class TranscriptFetcher:
         try:
             transcript_result = self.supadata.transcript(
                 url=url,
-                lang="en",
                 text=True,
-                mode="auto")
+                mode="native" # save credits by fetching existing transcript
+            )
             
-            if hasattr(transcript_result, "job_id"):
-                result = self.supadata.transcript.get_job_status(transcript_result.job_id)
-                return result
-            else:
+            if not hasattr(transcript_result, "job_id"):
                 return transcript_result.content
 
+            print("Processing job ", transcript_result.job_id)
+            result = self.supadata.transcript.get_job_status(transcript_result.job_id)
+            while (result.status != "completed"):
+                if (result.status == "failed"):
+                    return "FAILED"
+                time.sleep(5)
+                result = self.supadata.transcript.get_job_status(transcript_result.job_id)
+            print("Processed job!")
+            return result.content
+
         except Exception as e:
-            raise e
+            print(e)
 
