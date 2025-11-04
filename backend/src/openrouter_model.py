@@ -3,12 +3,12 @@ import requests
 import json
 from dotenv import dotenv_values
 
-config = dotenv_values(".env")
+config = dotenv_values("../.env")
 
 BASE_URL = "https://openrouter.ai/api/v1/chat/completions"
 
 class OpenRouterChatBot:
-   def __init__(self, model = "google/gemini-2.0-flash-exp:free"):
+   def __init__(self, model = "meta-llama/llama-3.3-8b-instruct:free"):
       self.model = model # default
       self.system_prompt = "You are a helpful AI assistant who will receive a text transcript from a video. \
          Your job is to summarise it, detailing the main points and key takeaways. You will also be asked to answer questions about the content of the transcript \
