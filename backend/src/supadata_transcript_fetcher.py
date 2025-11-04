@@ -52,4 +52,4 @@ class TranscriptFetcherSupadata:
             return transcript_result.content
 
         except Exception as e:
-            print(e)
+            self.logger.error(f"Error occurred: {e}")
