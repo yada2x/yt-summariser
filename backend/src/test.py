@@ -29,14 +29,15 @@ def test_bot():
     print(summary)
 
 def test_openrouter():
-    url = "https://www.youtube.com/watch?v=2crhrbqCLzU"
+    url = "https://www.youtube.com/watch?v=ULKPS8gNk7A"
     tFetch = TranscriptFetcherSupadata()
 
-    for url in urls:
-        res = tFetch.fetch_transcript(url)
-        bot = OpenRouterChatBot()
-        summary = bot.summarise(res)
-        print(f"--TRANSCRIPT START--\n{summary}\n-- TRANSCRIPT END --\n")
+    # for url in urls:
+    res = tFetch.fetch_transcript(url)
+    atexit.register(tFetch._save_cache)
+    bot = OpenRouterChatBot()
+    summary = bot.summarise(res)
+    print(f"--TRANSCRIPT START--\n{summary}\n-- TRANSCRIPT END --\n")
 
 def test_supadata():
     tFetch = TranscriptFetcherSupadata()

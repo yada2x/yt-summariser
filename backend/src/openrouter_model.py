@@ -7,7 +7,7 @@ config = dotenv_values("../.env")
 
 CHAT_COMPLETION_URL = "https://openrouter.ai/api/v1/chat/completions"
 COMPLETION_URL = "https://openrouter.ai/api/v1/completions"
-MAX_RETRIES = 10
+MAX_RETRIES = 5
 
 class OpenRouterChatBot:
    def __init__(self, model = "meta-llama/llama-3.3-8b-instruct:free"):
@@ -25,10 +25,10 @@ class OpenRouterChatBot:
    def chat(self, text):
       self.messages.append({"role": "user", "content": text})
       data = {
-      "model": self.model,
-      "prompt": self.messages,
+         "model": self.model,
+         "prompt": self.system_prompt + "\n" + text,
+         # "messages": self.messages,
       }
-
       for attempt in range(MAX_RETRIES):
          try:
             response = requests.post(
@@ -44,7 +44,7 @@ class OpenRouterChatBot:
             response.raise_for_status()
             result = response.json()
             
-            message = result["choices"][0]["message"]["content"]
+            message = result["choices"][0]["text"]
             self.messages.append({"role": "assistant", "content": message})
             return message
     
