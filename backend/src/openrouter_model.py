@@ -11,7 +11,7 @@ MAX_RETRIES = 5
 
 class OpenRouterChatBot:
    def __init__(self, model = "meta-llama/llama-3.3-8b-instruct:free"):
-      self.logger = setup_logger(__name__, "logs/app.log")
+      self.logger = setup_logger(__name__, "../logs/app.log")
       self.model = model # default
       self.system_prompt = "You are a helpful AI assistant who will receive a text transcript from a video. \
          Your job is to summarise it, detailing the main points and key takeaways. You will also be asked to answer questions about the content of the transcript \

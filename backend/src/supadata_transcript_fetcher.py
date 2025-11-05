@@ -9,7 +9,7 @@ config = dotenv_values("../.env")
 class TranscriptFetcherSupadata:
     def __init__(self):
         self.supadata = Supadata(config["SUPADATA_API_KEY"])
-        self.logger = setup_logger(__name__, "logs/app.log")
+        self.logger = setup_logger(__name__, "../logs/app.log")
 
         with open("cache.json", "r") as cache:
             self.cache = json.load(cache)
