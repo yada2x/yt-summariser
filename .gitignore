@@ -3,3 +3,5 @@
 .vercel
 venv
 __pycache__
+logs/
+archive/
